@@ -1,2 +1,2 @@
 # Demo06
-This project use terraform to crate resource on Azure
+This project use terraform to create resource on Azure
