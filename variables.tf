@@ -1,16 +1,16 @@
 variable "SUB_ID" {
   type = string
-  default = "rsg-test-tf"
+  default = "yyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyyy"
 }
 
 variable "TENANT_ID" {
   type = string
-  default = "rsg-test-tf"
+  default = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
 
 variable "RG_NAME" {
   type = string
-  default = "rsg-test-tf"
+  default = "resourcegroup-name"
 }
 
 variable "LOCATION_NAME" {
@@ -20,12 +20,12 @@ variable "LOCATION_NAME" {
 
 variable "ACR_NAME" {
   type = string
-  default = "ops2dev"
+  default = "acr-name"
 }
 
 variable "ASP_NAME" {
   type = string
-  default = "asp-test-tf"
+  default = "appserviceplan-name"
 }
 
 variable "OS_TYPE" {
@@ -40,10 +40,10 @@ variable "SKU_NAME" {
 
 variable "WEB_NAME" {
   type = string
-  default = "P1v3"
+  default = "website-name"
 }
 
 variable "IMG_NAME" {
   type = string
-  default = "P1v3"
+  default = "image-name"
 }

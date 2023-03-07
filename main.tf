@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=3.0.0"
+      version = "=3.43.0"
     }
   }
 }
@@ -37,14 +37,15 @@ resource "azurerm_service_plan" "asp" {
   location            = azurerm_resource_group.rsg.location
   os_type             = var.OS_TYPE
   sku_name            = var.SKU_NAME
-  #  zone_redundant      = true
+  worker_count = 3
+  zone_balancing_enabled = true
 }
 
 resource "azurerm_linux_web_app" "web" {
   name                = var.WEB_NAME
-  resource_group_name = azurerm_resource_group.web.name
-  location            = azurerm_service_plan.web.location
-  service_plan_id     = azurerm_service_plan.web.id
+  resource_group_name = azurerm_resource_group.rsg.name
+  location            = azurerm_resource_group.rsg.location
+  service_plan_id     = azurerm_service_plan.asp.id
 
   app_settings = {
     "DOCKER_REGISTRY_SERVER_PASSWORD" = azurerm_container_registry.acr.admin_password
@@ -54,11 +55,10 @@ resource "azurerm_linux_web_app" "web" {
 
   site_config {
     container_registry_managed_identity_client_id = azurerm_container_registry.acr.identity[0].principal_id
-
-  }
-
-  application_stack {
-    docker_image = var.IMG_NAME
-    docker_image_tag = "lastest"
+    
+      application_stack {
+       docker_image = var.IMG_NAME
+       docker_image_tag = "lastest"
+      }
   }
 }
